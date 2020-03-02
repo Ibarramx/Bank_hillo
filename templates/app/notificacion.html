@@ -1,0 +1,52 @@
+{{define "app/notificacion_transferencia"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Estado de transaccion</title>
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="popup" id="popup">
+                <center><h2>Estado: Movimiento exitoso</h2></center><br>
+                <h5>Numero de transaccion: {{.ID}}</h5>
+                <h5>Fecha: {{.Fecha}}</h5>
+                <h5>Tarjeta destino: {{.NumeroTarjetaDestino}}</h5>
+                <h5>Monto: ${{.Monto}}</h5><br>
+                <a href="/cajero/"><center><input name="button" type="button" class="btn btn-success col-md-3" onclick="window.close();" value="Aceptar" /></center></a>
+        </div>
+    </div>
+
+    <style> 
+    .overlay{
+        background: rgba(0,0,0,.3);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .popup{
+        background: #fafafa;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,.3);
+        border-radius: 3px;
+        padding: 20px;
+        text-align: center;
+        width: 550px;
+        text-align: justify;
+    }
+    .popup form .btn-submit:hover{
+        background:  rgba(94, 125, blue227, .9);
+        
+    }
+    </style>
+</body>
+</html>
+{{end}}

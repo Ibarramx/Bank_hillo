@@ -1,0 +1,87 @@
+{{define "app/cliente"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Banco de Hermosillo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-brand">
+                    Banco de Hermosillo
+                </p>
+            </div>
+            <div class="collapse navbar-collapse navbar-right">
+                <ul>
+                    <a class="navbar-brand btn" href="/">
+                            Salir
+                    </a>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+    <center><h1>Servicio monitoreo de cuenta</h1></center>
+    <br><br>
+    <div class="container">
+      <div class="col-md-3 ">
+        <form action="/cliente/" method="POST">
+          <select name="tarjeta" id="tarjeta" class="form-control">
+            {{range .Tarjetas}}
+            <option value="{{.NumeroTarjeta}}">{{.NumeroTarjeta}}</option>
+            {{end}}
+          </select>
+          <div class="col-md-2">
+            <input type="submit" class="btn btn-primary" value="Consultar"/>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3 col-md-offset-4">
+        <h3>Saldo disponible: <strong>${{.Cuenta.Saldo}}</strong></h3>
+      </div>
+      <div>
+
+      </div>
+    </div>
+    <br>
+    <div class="container">
+        <table class="table" >
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Codigo de transaccion</th>
+                <th scope="col">Fecha y hora</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Tarjeta origen</th>
+                <th scope="col">Tarjeta destino</th>
+                <th scope="col">Tipo transaccion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{range .Transacciones}}
+              <tr>
+                <th scope="row"><center>{{.ID}}</center></th>
+                <td>{{.Fecha}}</td>
+                <td><center>${{.Monto}}</center></td>
+                <td>{{.Estado}}</td>
+                <td><center>{{.TitularTarjeta}}</center></td>
+                <td>{{.NumeroTarjetaOrigen}}</td>
+                <td>{{.NumeroTarjetaDestino}}</td>
+                <td><center>{{.TipoTransaccion}}</center></td>
+              </tr>
+              {{end}}
+              </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+
+{{end}}

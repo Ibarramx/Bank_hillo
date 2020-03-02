@@ -1,0 +1,61 @@
+{{ define "app/cajero" }}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <title>Banco de Hermosillo</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    </head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-brand">
+                    Banco de Hermosillo
+                </p>
+            </div>
+            <div class="collapse navbar-collapse navbar-right">
+                <ul>
+                    <a class="navbar-brand btn" href="\">
+                            Salir
+                    </a>
+                </ul>
+            </div>
+        </div>   
+    </nav>
+    <center>
+       <div class="col-md-offset-4 col-md-4">
+            <h2>Servicio de depositos y transferencias</h2><br><br>
+                    <form method="POST" class="" action="/cajero/">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="">Tarjeta Origen</label>
+                                <input type="text" placeholder="Numero de tarjeta" class="form-control" id="tarjetaOrigen" name="tarjetaOrigen" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" minlength="16" maxlength="16">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" maxlength="3" >
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="text" class="form-control" id="mes" name="mes" placeholder="MM" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" maxlength="2" >
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="text" id="ano" name="ano" class="form-control" placeholder="AA" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" maxlength="2" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tarjeta Destino</label>
+                            <input type="text" class="form-control" placeholder="Numero de Tarjeta" id="tarjetaDestino" name="tarjetaDestino" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" minlength="16" maxlength="16" required>
+                        </div>
+                        <div>
+                            <input type="text" name="monto" id="monto" placeholder="Monto a depositar o transferir" class="form-control" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" required><br>
+                        </div>
+                        <input type="submit" class="btn btn-primary form-control" value="Entrar"/>
+                    </form>
+        </div>
+    </body>
+</html>
+{{end}}

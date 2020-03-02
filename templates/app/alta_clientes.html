@@ -1,0 +1,145 @@
+{{ define "app/admin"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Banco de Hermosillo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    Banco de Hermosillo
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right">
+                <ul>
+                    <a class="navbar-brand btn" href="/">
+                            Salir
+                    </a>
+                </ul>
+            </div>
+        </div>
+        
+    </nav>
+    <!--<div class="container">
+        <h3>Seleccionar una opcion:</h3>
+        <div class="col-md-4">
+            <Select class="form-control" id="inputSelect">
+                <option value="1">Seleccione una opcion</option>
+                <option value="2">Alta Cuentas</option>
+                <option value="3">Consultar cuenta</option>
+            </Select>
+        </div>
+
+    </div>-->
+    <div id="div1"></div>
+    <center>
+       <div class="col-md-offset-4 col-md-4" id="div2">
+            <h1>Alta de Cuentas</h1>
+            <form method="POST" action="/admin/" class="">
+                <div class="form-row">
+                    <div class="form-group"><br>
+                        <h3>Datos del solicitante</h3>
+                        <select name="tipo_cuenta" id="tipo_cuenta" class="form-control">
+                            <option value="1">Fisica</option>
+                            <option value="2">Moral</option>
+                        </select><br>
+                        <input type="text" placeholder="Nombre" name="nombre" id="nombre" class="form-control" required><br>
+                        <div id="Fisica">
+                            <div class="form-group col-md-6">
+                                <input type="Apellido paterno" name="ap_paterno" id="ap_paterno" class="form-control" 
+                                placeholder="Apellido paterno" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="Apellido materno" name="ap_materno" id="ap_materno" class="form-control" placeholder="Apellido materno" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="clave" id="clave" class="form-control" placeholder="RFC/CURP" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <h3>Asignacion de tarjeta</h3>
+                        <input type="text" placeholder="Numero de tarjeta" class="form-control" id="tarjeta" name="tarjeta" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" minlength="16" maxlength="16">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" maxlength="3" >
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="text" class="form-control" id="mes" name="mes" placeholder="MM" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" maxlength="2" >
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="text" id="ano" name="ano" class="form-control" placeholder="AA" onKeypress="if(event.keyCode < 45 ||event.keyCode > 57)event.returnValue=false;" maxlength="2" >
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary form-control">Entrar</button>
+            </form>
+        </div>
+        <!--<center>
+            <div id="div3" class="container">
+                <h2>Consultar Movimientos y Saldo</h2>
+                <form action="">
+                    <label for="Numero de tarjeta:"></label>
+                    <div class="col-md-4">
+                    <input type="text" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-default">Consultar</button>
+                    </div>
+                    <div class="col-md-2 col-md-offset-2">
+                            <h4>Saldo disponible:</h4>
+                    </div>
+                </form>
+                <div class="container">
+                        <table class="table" >
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">Codigo de transaccion</th>
+                                <th scope="col">Fecha y hora</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">estado</th>
+                                <th scope="col">Tarjeta destino</th>
+                                <th scope="col">Tipo transaccion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              </tbody>
+                        </table>
+                    </div>
+            </div>
+        </center>-->
+
+        <script>
+                $("#tipo_cuenta").on('change', function(){
+                    var valor= $(this).val();
+                    switch(valor){
+                        case "1":
+                            $("#Fisica").show();
+                            $("#titulo").show();
+                        break;
+                        case "2":
+                            $("#Fisica").hide();
+                            $("#titulo").hide();
+                        break;
+                    }
+                }).change();
+        </script>
+</body>
+</html>
+{{end}}
